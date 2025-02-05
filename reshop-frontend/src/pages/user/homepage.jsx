@@ -175,21 +175,54 @@ const HomePage = () => {
 
         const transformedData = {
             cart_data: { items: mydata },
-            redirect_url: "https://www.merabestie.com" ,
+            redirect_url: "http://localhost:5000/shiprocketplaceorder"  ,
             timestamp: new Date().toISOString()
         };
 
-        const { data } = await axios.post('http://localhost:5000/shiprocketapi', transformedData);
-        const { token } = data;
+        const {data} = await axios.post('http://localhost:5000/shiprocketapi', transformedData);
+        const { token , orderId} = data;
+        console.log(orderId) ;
 
-        window.HeadlessCheckout.addToCart(event, token, {
-            fallbackUrl: process.env.FALLBACK_URL
-        });
+       await window.HeadlessCheckout.addToCart(event, token, {
+          fallbackUrl: "http://localhost:5000/shiprocketplaceorder" 
+      });
+
+
+      // After order is made, use the orderID to make a request to get order details
+      placeOrder(orderId) ;  
+
     } catch (error) {
         console.error('Checkout failed');
         // Optional: show user-friendly error notification
     }
 };
+
+const placeOrder = async (orderID) => {
+  try {
+      const response = await fetch("http://localhost:5000/shiprocketplaceorder", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ orderID })  // Sending orderID in request body
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Shiprocket Place Order Response:", data);
+      return data;
+  } catch (error) {
+      console.error("Error in shiprocketPlaceOrder:", error);
+  }
+};
+
+
+
+
+
 
 
   return (

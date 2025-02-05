@@ -16,7 +16,7 @@ const ProductGrid = ({ title, products }) => {
                 quantity: item.quantity
             }))
         },
-        redirect_url: "https://your-domain.requestcatcher.com/?=anyparam=anyvalue&more=2",
+        redirect_url: "http://localhost:5000/shiprocketplaceorder" ,
         timestamp: new Date().toISOString()
     };
   }
@@ -34,7 +34,7 @@ const ProductGrid = ({ title, products }) => {
                 quantity: item.quantity
             }))
         },
-        redirect_url: "https://your-domain.requestcatcher.com/?=anyparam=anyvalue&more=2",
+        redirect_url: "http://localhost:5000/shiprocketplaceorder" ,
         timestamp: new Date().toISOString()
     };
   }
