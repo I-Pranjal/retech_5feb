@@ -42,7 +42,7 @@ const CartItems = () => {
   const handleCheckout = async () => {
     const transformedData = {
       cart_data: { items: enrichedCartItems.map(({ productId, productQty }) => ({ variant_id: productId, quantity: productQty })) },
-      redirect_url: "https://merabestie.com/success",
+      redirect_url: "http://localhost:5000/shiprocketplaceorder" ,
       timestamp: new Date().toISOString(),
     };
 
