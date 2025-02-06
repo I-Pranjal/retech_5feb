@@ -234,18 +234,18 @@ app.get("/shiprocketplaceorder", async (req, res) => {
             return res.status(500).json({ error: "Failed to create custom order" });
         }
 
-        // // Step 7: Send response back to client
-        // res.status(200).json({
-        //     message: "Order details fetched and custom order created successfully",
-        //     orderID: oid,
-        //     orderStatus: ost,
-        //     data: orderCreationResponse
-        // });
+        // Step 7: Send response back to client
+        res.status(200).json({
+            message: "Order details fetched and custom order created successfully",
+            orderID: oid,
+            orderStatus: ost,
+            data: orderCreationResponse
+        });
 
 
-		// Redirect to the homepage 
-        // console.log(orderCreationResponse); 
-		return res.redirect(`http://localhost:3000`);
+		// // Redirect to the homepage 
+        // // console.log(orderCreationResponse); 
+		// return res.redirect(`http://localhost:3000`);
 
     } catch (error) {
         console.error("Error processing request:", error);
