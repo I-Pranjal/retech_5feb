@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
     try {
       isFetchingProducts.current = true;
       setLoading(true);
-      const response = await axios.get("https://api.merabestie.com/get-product");
+      const response = await axios.get("http://localhost:5000/get-product");
       setProducts(response.data.products || []);
     } catch (error) {
       console.error("Error fetching products:", error);

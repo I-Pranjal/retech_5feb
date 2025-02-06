@@ -449,19 +449,6 @@ app.get("/orders", async (req, res) => {
 	}
 });
 
-app.get("/get-product", async (req, res) => {
-    try {
-        const product = await axios.get(`https://api.merabestie.com/products`);
-        if (!product) {
-            return res.status(404).json({ success: false, message: "Product not found" });
-        }
-
-        res.status(200).json(product.data);
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-    }
-});
-
 // Initialize MONGODB
 mongoose
 	.connect(process.env.MONGO_URI)
