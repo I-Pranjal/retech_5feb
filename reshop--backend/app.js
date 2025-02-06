@@ -32,7 +32,7 @@ app.use(
 	cors({
 		origin: process.env.ALLOWED_ORIGINS?.split(",").map((origin) =>
 			origin.trim()
-		) || ["http://localhost:5000"],
+		) || ["http://localhost:5000", "http://localhost:3000"],
 		methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 		allowedHeaders: [
 			"Content-Type",
@@ -244,6 +244,7 @@ app.get("/shiprocketplaceorder", async (req, res) => {
 
 
 		// Redirect to the homepage 
+        // console.log(orderCreationResponse); 
 		return res.redirect(`http://localhost:3000`);
 
     } catch (error) {
